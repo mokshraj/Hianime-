@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Login with Token</title>
+    <style>
+        #mainContent {
+            display: none;
+        }
+        #passwordPrompt {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const password = '123eqwe'; // Set your password here
+            const enteredPassword = prompt('Please enter the password to access this site:');
+
+            if (enteredPassword === password) {
+                document.getElementById('passwordPrompt').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+            } else {
+                alert('Incorrect password. Access denied.');
+            }
+
             // The token to inject
             const token = 'your-saved-token';
             const targetDomain = 'example.com';
@@ -22,12 +41,18 @@
             const button = document.createElement('button');
             button.textContent = 'Log In with Token';
             button.onclick = setToken;
-            document.body.appendChild(button);
+            document.getElementById('mainContent').appendChild(button);
         });
     </script>
 </head>
 <body>
-    <h1>Auto Login with Token</h1>
-    <p>Click the button below to log in with the token.</p>
+    <div id="passwordPrompt">
+        <h1>Password Protected</h1>
+        <p>You need to enter the correct password to access this content.</p>
+    </div>
+    <div id="mainContent">
+        <h1>Auto Login with Token</h1>
+        <p>Click the button below to log in with the token.</p>
+    </div>
 </body>
 </html>
