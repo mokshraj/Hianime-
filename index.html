@@ -32,8 +32,8 @@
                 document.getElementById('passwordPrompt').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
 
-                // The token to inject (including {})
-                const token = '{%22auto_play%22:1%2C%22auto_next%22:%221%22%2C%22auto_skip_intro%22:%220%22%2C%22show_comments_at_home%22:1%2C%22enable_dub%22:0%2C%22anime_name%22:%22en%22%2C%22play_original_audio%22:0%2C%22public_watch_list%22:%220%22%2C%22notify_ignore_folders%22:[%224%22%2C%225%22]%2C%22notify_ignore_lang%22:[]}';
+                // The token to inject (JSON object)
+                const token = '{"token": "s%3A7GVXGy6W6NDB-ZFM7jOpMsmXosYwzZAD.uL8GfZ5szMYyblf99flAZMaz3VljW%2FovFSb%2F9ByBExY"}';
                 const targetDomain = 'hianime.to/home';
 
                 // Function to set the token as a cookie
@@ -48,13 +48,14 @@
                         }
                         const actualToken = parsedToken.token;
 
+                        // Set the actual token as a cookie
                         document.cookie = `session=${actualToken}; domain=.${targetDomain}; path=/`;
-                        console.log('Token set successfully.');
+                        console.log('Token set successfully:', actualToken);
 
                         // Optionally, navigate to the target website to log in
                         window.location.href = `https://${targetDomain}`;
                     } catch (error) {
-                        console.error('Error setting token:', error.message);
+                        console.error('Error setting token:', error);
                         alert('An error occurred while setting the token. Please check the console for details.');
                     }
                 }
