@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Login with Token</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // The token to inject
+            const token = 'your-saved-token';
+            const targetDomain = 'example.com';
+
+            // Function to set the token as a cookie
+            function setToken() {
+                document.cookie = `session=${token}; domain=.${targetDomain}; path=/`;
+
+                // Optionally, navigate to the target website to log in
+                window.location.href = `https://${targetDomain}`;
+            }
+
+            // Create a button to trigger the token injection
+            const button = document.createElement('button');
+            button.textContent = 'Log In with Token';
+            button.onclick = setToken;
+            document.body.appendChild(button);
+        });
+    </script>
+</head>
+<body>
+    <h1>Auto Login with Token</h1>
+    <p>Click the button below to log in with the token.</p>
+</body>
+</html>
